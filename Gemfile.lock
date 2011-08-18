@@ -94,4 +94,4 @@ PLATFORMS
 DEPENDENCIES
   neo4j (= 1.1.4)
   rails (= 3.0.9)
-  rspec-rails
+  rspec-rails (= 2.6.1)
