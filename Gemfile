@@ -8,5 +8,5 @@ gem 'rails', '3.0.9'
 gem 'neo4j', '1.1.4'
 
 group :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.6.1'
 end
