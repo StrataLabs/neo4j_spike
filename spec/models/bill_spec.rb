@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Bill do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should load all" do
+    b = Bill.new
+    b.amount = 20
+    b.save
+    puts Bill.first.amount
+  end
 end

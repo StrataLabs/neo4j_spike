@@ -1,4 +1,6 @@
+.DS_STORE
 .bundle
+db/neo4j**/
 db/*.sqlite3
 log/*.log
 tmp/
