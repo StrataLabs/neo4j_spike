@@ -1,12 +1,5 @@
-== Gotchas ==
-1) In case you see this error while doing a 'bundle install': 
+Please add the following line to your .profile
 
-System.java:-2:in `arraycopy': java.lang.ArrayIndexOutOfBoundsException
-	from DefaultResolver.java:111:in `makeTime'
-	
-make sure that you add this line to your shell's profile:
-export JRUBY_OPTS="--1.9"
+export JRUBY_OPTS="-X+O --1.9"
 
-(This enables JRuby to work in Ruby 1.9 mode)
-
-2) You'll need to use Neo4j version 1.1.4. This fixes an issue with a dependency on the will_paginate gem.
+This turns on ObjectSpace (required for Spork), and Ruby 1.9 mode
