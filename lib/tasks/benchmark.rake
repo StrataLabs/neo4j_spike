@@ -18,7 +18,7 @@ namespace :benchmark do
       x.report("Create transactions") do
         Account.transaction do
           (1..10000).each  do |i|
-            account.incurs.create(:amount => i, :date => (Date.today + i.days))
+            account.transactions.create(:amount => i, :date => (Date.today + i.days))
           end
         end
       end
@@ -37,12 +37,33 @@ namespace :benchmark do
 
       puts "Result size :#{result_size}"
 
-      x.report("AccRelQuery") do
-        trans = account.incurs.find_all { |trans| query_range.include?(trans.date) }
+      x.report("AccRelQuerySort") do
+        trans = account.transactions.find_all { |trans| query_range.include?(trans.date) }
         result_size = trans.sort_by(&:date).size
       end
 
       puts "Result size :#{result_size}"
+    end
+  end
+
+  task  :range_aggregate => :data_counts do
+    account = Account.find(:name => "test") || Account.create!(:name => "test")
+    query_range = (Date.today+8000.days..Date.today + 8500.days)
+
+    Benchmark.bm do |x|
+      total = 0
+      x.report("QueryTotalJavaObj") do
+        trans = account.outgoing("Transaction#transactions"
+                            ).each { |trans| total += trans[:amount] if query_range.include?(trans[:date]) }
+      end
+      puts "Result Total :#{total}"
+
+      total = 0
+      x.report("QueryTotalRubyObj") do
+        trans = account.transactions.each { |trans| total += trans[:amount] if query_range.include?(trans.date) }
+      end
+
+      puts "Result Total :#{total}"
     end
   end
 end
