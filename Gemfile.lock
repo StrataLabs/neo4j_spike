@@ -40,7 +40,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    neo4j (1.2.0-java)
+    neo4j (1.2.2-java)
       activemodel (>= 3.0.0)
       orm_adapter (>= 0.0.3)
       railties (>= 3.0.0)
@@ -93,7 +93,7 @@ PLATFORMS
   java
 
 DEPENDENCIES
-  neo4j (= 1.2.0)
+  neo4j (= 1.2.2)
   rails (= 3.0.9)
   rspec-rails (= 2.6.1)
   spork (~> 0.9.0.rc)
